@@ -40,8 +40,8 @@ void setup()
   }
 
   // generate the initial food
-  foodX = int(random(0, tileCountX));
-  foodY = int(random(0, tileCountY));
+  foodX = int(random(1, tileCountX-1));
+  foodY = int(random(1, tileCountY-1));
 }
 
 void draw()
@@ -103,45 +103,44 @@ void draw()
   // check if we hit the food
   if ((snakeLocations[0][1] == ((foodX * tileSize))) && (snakeLocations[0][0] == ((foodY * tileSize))))
   {
-      newFood = true;
-      snakeLength = snakeLength + 1;
-      
-      // shift the snake
-      for (int i=0;i<snakeLength-1;i++)
-      {  
-        snakeLocations[snakeLength-i-1][0] = snakeLocations[snakeLength-i-2][0];
-        snakeLocations[snakeLength-i-1][1] = snakeLocations[snakeLength-i-2][1];
-      }
+    newFood = true;
+    snakeLength = snakeLength + 1;
 
-      // decide what to do with the head
-      switch(lastKey)
+    // shift the snake
+    for (int i=0;i<snakeLength-1;i++)
+    {  
+      snakeLocations[snakeLength-i-1][0] = snakeLocations[snakeLength-i-2][0];
+      snakeLocations[snakeLength-i-1][1] = snakeLocations[snakeLength-i-2][1];
+    }
+
+    // decide what to do with the head
+    switch(lastKey)
+    {
+    case UP:
       {
-      case UP:
-        {
-          snakeLocations[0][0] = snakeLocations[1][0] - boxDimension;
-          snakeLocations[0][1] = snakeLocations[1][1];
-          break;
-        }
-      case DOWN:
-        {
-          snakeLocations[0][0] = snakeLocations[1][0] + boxDimension;
-          snakeLocations[0][1] = snakeLocations[1][1];
-          break;
-        }
-      case RIGHT:
-        {
-          snakeLocations[0][0] = snakeLocations[1][0];
-          snakeLocations[0][1] = snakeLocations[1][1] + boxDimension;          
-          break;
-        }
-      case LEFT:
-        {
-          snakeLocations[0][0] = snakeLocations[1][0];
-          snakeLocations[0][1] = snakeLocations[1][1] - boxDimension;
-          break;
-        }
+        snakeLocations[0][0] = snakeLocations[1][0] - boxDimension;
+        snakeLocations[0][1] = snakeLocations[1][1];
+        break;
       }
-    
+    case DOWN:
+      {
+        snakeLocations[0][0] = snakeLocations[1][0] + boxDimension;
+        snakeLocations[0][1] = snakeLocations[1][1];
+        break;
+      }
+    case RIGHT:
+      {
+        snakeLocations[0][0] = snakeLocations[1][0];
+        snakeLocations[0][1] = snakeLocations[1][1] + boxDimension;          
+        break;
+      }
+    case LEFT:
+      {
+        snakeLocations[0][0] = snakeLocations[1][0];
+        snakeLocations[0][1] = snakeLocations[1][1] - boxDimension;
+        break;
+      }
+    }
   }
 
   // draw the snake
