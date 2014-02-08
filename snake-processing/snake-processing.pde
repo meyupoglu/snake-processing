@@ -1,4 +1,6 @@
-// Yilan ...
+/*
+	Mustafa Eyupoglu - January 2014
+*/
 
 int windowHeight = 480;
 int windowLength = 640;
